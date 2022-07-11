@@ -23,6 +23,10 @@ class FormFail
   def valid_cnpj
     Faker::CNPJ.numeric
   end
+
+  def rand_cns
+    rand.to_s[2..16]
+  end
   
   def random_number(var = 100_000)
     if var != 100_000
