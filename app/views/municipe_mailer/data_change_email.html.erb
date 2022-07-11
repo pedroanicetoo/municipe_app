@@ -1,0 +1,22 @@
+<h1>Seus Dados Foram alterados!</h1>
+
+<ul>
+  <li>Nome: <%=  @municipe.fullname %></li>
+  <li>Cpf: <%=  @municipe.cpf %></li>
+  <li>Cns: <%=  @municipe.cns %></li>
+  <li>Email: <%=  @municipe.email %></li>
+  <li>Data de Nascimento: <%=  @municipe.birthdate %></li>
+  <li>Telefone: <%=  @municipe.phone %></li>
+  <li>Status: <%=  @municipe.status %></li>
+</ul>
+
+<h4>Dados de Endereço</h4>
+
+<ul>
+  <li>CEP: <%=  @address.zipcode %></li>
+  <li>Logradouro: <%=  @address.publicplace %></li>
+  <li>Complemento: <%=  @address.complement %></li>
+  <li>Bairro: <%=  @address.district %></li>
+  <li>Cidade: <%=  @address.city %> - <%=  @address.uf %></li>
+  <li>Código do IBGE: <%=  @address.ibgecode %></li>
+</ul>
