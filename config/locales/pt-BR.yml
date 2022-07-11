@@ -1,0 +1,68 @@
+pt-BR:
+  activerecord:
+    enums:
+      municipe:
+        status:
+          active: Ativo
+          inactive: Inativo
+    errors:
+      models:
+        municipe:
+          attributes:
+            fullname: 
+              blank: em branco
+            cpf: 
+              blank: em branco
+            address:
+              required: obrigatório
+            email:
+              blank: em branco
+              invalid: formato inválido
+            phone:
+              blank: em branco
+            birthdate:
+              blank: em branco
+            status:
+              blank: em branco
+            avatar_file_name:
+              blank: em branco
+            avatar_file_size:
+              blank: em branco
+            avatar_content_type:
+              blank: em branco
+            avatar_updated_at:
+              blank: em branco
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        not_found: '%{model} não encontrado.'
+        not_found_female: '%{model} não encontrada.'
+        restrict_dependent_destroy:
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+        less_than_or_equal_to: Deve ser menor ou igual a %{count}.
+        greater_than: Deve ser maior que %{count}
+    models:
+      municipe: Cidadão
+      address: Endereço
+    attributes:
+      municipe:
+        fullname: Nome Completo
+        cpf: CPF
+        cns: Cartão Nacional de Saúde
+        email: Email
+        birthdate: Data de Nascimento
+        phone: Telefone Móvel
+        status: Status
+        avatar_file_name: Nome do arquivo
+        avatar_file_size: Tamanho do arquivo
+        avatar_content_type: Formato do Arquivo
+        avatar_updated_at: Data de envio do arquivo
+        address: Endereço
+      address:
+        zipcode: CEP
+        publicplace: Logradouro
+        complement: Complemento
+        district: Bairro
+        city: Cidade
+        uf: UF
+        ibgecode: Código IBGE
