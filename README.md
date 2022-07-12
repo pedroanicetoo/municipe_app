@@ -8,12 +8,12 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
-  - Ruby 3.1.2
-  - Rails 7.0.3
-  - ElasticSearch Version: 8.3.2
-  - Postgres
-  - MailCatcher
-  - Twillo
+  # Ruby 3.1.2
+  # Rails 7.0.3
+  # ElasticSearch Version: 8.3.2
+  # Postgres
+  # MailCatcher
+  # Twillo
 * Configuration
 
 * Database creation
