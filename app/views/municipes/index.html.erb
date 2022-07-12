@@ -1,29 +1,102 @@
-<p id="notice"><%= notice %></p>
+<h1>Buscar Cidadãos</h1>
 
-<h1>Municipes</h1>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Novo Cidadão
+</button>
 
-<p>
-  Press <%= link_to 'here', search_municipes_path %> to search for municipes.
-</p>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastrar Cidadão</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'new_municipe_modal_form', municipe: @municipe %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="save_municipe" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_for :search_municipes, url: municipes_path, method: :get do |form| %>
+  <%= form.text_field :query, value: params[:search_municipes].presence && params[:search_municipes][:query], class: "form-control", placeholder: 'Pesquise por: Nome, Email, CEP, Bairro, Complemento, Cidade, UF' %>
+  <%= form.submit 'Procurar', class: "search-btn"  %>
+<% end %>
 
-  <tbody>
-    <% @municipes.each do |municipe| %>
-      <tr>
-        <td><%= link_to 'Show', municipe %></td>
-        <td><%= link_to 'Edit', edit_municipe_path(municipe) %></td>
-        <td><%= link_to 'Destroy', municipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% unless @municipes.nil? %>
+  <% if @municipes.empty? %>
+    <h2>No municipes found matching your query.</h2>
+  <% else %>
+    <h2>Search results</h2>
 
-<br>
+    <table class="table table-striped">
+      <thead>
+         <tr>
+           <th>Nome</th>
+           <th>CPF</th>
+           <th>CNS</th>
+           <th>Email</th>
+           <th>Data de Nascimento</th>
+           <th>Telefone</th>
+           <th>Status</th>
+           <th></th>
+         </tr>
+      </thead>
 
-<%= link_to 'New Municipe', new_municipe_path %>
+      <tbody>
+        <% @municipes.each do |municipe| %>
+          <tr>
+            <td><%= municipe.fullname %></td>
+            <td><%= municipe.cpf %></td>
+            <td><%= municipe.cns %></td>
+            <td><%= municipe.email %></td>
+            <td><%= municipe.birthdate %></td>
+            <td><%= municipe.phone %></td>
+            <td><%= municipe.status %></td>
+            <td><%= link_to 'Editar', edit_municipe_path(municipe.id) %></td>
+          </tr>
+        <% end %>
+      <tbody>
+    </table>
+  <% end %>
+<% end %>
+
+<script>
+  var form = $('.modal-body > form');
+  $('#save_municipe').on('click', function(ev) {
+     $('#municipe-errors').html('')
+    $.ajax({
+      type: "POST",
+      url: '/municipes',
+      data: form.serialize(),
+      success: function(data, textStatus, jqXHR){
+        $('#exampleModal').modal('hide')
+        alert('Cidadão Cadastrado')
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        $('#municipe-errors').append('<ul></ul>')
+        jqXHR.responseText.replace('[','').replace(']','').split(',').forEach((error) => {
+          $("#municipe-errors > ul").append('<li>' + error + '</li>')
+        })
+      }
+    })
+  });
+</script>
+
+<style>
+  #search_municipes_query {
+    width: calc(100% - 100px);
+    float: left;
+    margin: 15px 5px 15px;
+  }
+
+  .search-btn {
+    margin: 20px 0;
+  }
+</style>

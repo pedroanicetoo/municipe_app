@@ -1,0 +1,70 @@
+<%= form_with(model: municipe) do |form| %>
+<div id="municipe-errors"></div>
+<div class="actions">
+  <div class="row">
+    <div class="col-md-3">
+      <%= form.label :fullname, class:"form-label" %>
+      <%= form.text_field :fullname, class:'form-control' %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :cpf, class:"form-label" %>
+      <%= form.text_field :cpf, class:'form-control' %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :cns, class:"form-label" %>
+      <%= form.text_field :cns, class:'form-control' %>
+    </div>
+    <div class="col-md-3">
+      <%= form.label :email, class:"form-label" %>
+      <%= form.text_field :email, class:'form-control' %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :phone, class:"form-label" %>
+      <%= form.text_field :phone, class:'form-control' %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :birthdate, class:"form-label" %>
+      <%= form.date_field :birthdate, class:"form-control" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :status, class:"form-label" %>
+      <%= form.select :status, options_for_select([["Inativo", :inactive],["Ativo", :active]], municipe.status), {prompt: true}, class: "form-select" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :avatar, class:"form-label" %>
+      <%= form.file_field :avatar %>
+    </div>
+    <%= form.fields_for :addresses do |address_form| %>
+      <h4><%= I18n.t('activerecord.models.address') %></h4>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.zipcode'), class:"form-label" %>
+        <%= address_form.text_field :zipcode, value: form.object.try(:address).try(:zipcode), class:'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.publicplace'), class:"form-label" %>
+        <%= address_form.text_field :publicplace, value: form.object.try(:address).try(:publicplace), class:'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.complement'), class:"form-label" %>
+        <%= address_form.text_field :complement, value: form.object.try(:address).try(:complement), class:'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.district'), class:"form-label" %>
+        <%= address_form.text_field :district, value: form.object.try(:address).try(:district), class:'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.city'), class:"form-label" %>
+        <%= address_form.text_field :city, value: form.object.try(:address).try(:city), class:'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.uf'), class:"form-label" %>
+        <%= address_form.text_field :uf, value: form.object.try(:address).try(:uf), class:'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= address_form.label I18n.t('activerecord.attributes.address.ibgecode'), class:"form-label" %>
+        <%= form.number_field :ibgecode, value: form.object.try(:address).try(:ibgecode) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

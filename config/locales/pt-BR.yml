@@ -9,9 +9,13 @@ pt-BR:
       models:
         municipe:
           attributes:
-            fullname: 
+            fullname:
               blank: em branco
-            cpf: 
+            cpf:
+              invalid: inválido
+              blank: em branco
+            cns:
+              invalid: inválido
               blank: em branco
             address:
               required: obrigatório
@@ -32,6 +36,19 @@ pt-BR:
               blank: em branco
             avatar_updated_at:
               blank: em branco
+        address:
+          attributes:
+            zipcode:
+              blank: em branco
+            publicplace:
+              blank: em branco
+            district:
+              blank: em branco
+            city:
+              blank: em branco
+            uf:
+              blank: em branco
+
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         not_found: '%{model} não encontrado.'

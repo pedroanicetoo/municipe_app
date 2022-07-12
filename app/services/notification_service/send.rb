@@ -23,8 +23,6 @@ module NotificationService
 
     def send_email
       MunicipeMailer.data_change_email(municipe).deliver_now!
-    rescue => e
-      ExceptionService::EmailErrorException.new('Email não foi enviado')
     end
 
     def send_sms
@@ -33,12 +31,10 @@ module NotificationService
         to: municipe.phone,
         body: message
       )
-    rescue => e
-      ExceptionService::SmsErrorException.new('Não foi possível enviar o sms')
     end
 
     def client
-      Twilio::REST::Client.new(Rails.application.credentials.twilio_account_sid, Rails.application.credentials.twilio_auth_token) 
+      Twilio::REST::Client.new(Rails.application.credentials.twilio_account_sid, Rails.application.credentials.twilio_auth_token)
     end
 
   end

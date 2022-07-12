@@ -15,13 +15,10 @@ describe Municipe do
     it { should validate_presence_of(:birthdate) }
     it { should validate_presence_of(:phone) }
     it { should validate_presence_of(:status) }
-    it { should validate_presence_of(:avatar_file_name) }
-    it { should validate_presence_of(:avatar_file_size) }
-    it { should validate_presence_of(:avatar_updated_at) }
 
     describe ".valid_cpf?" do
       let(:instance) { create(:municipe) }
-      
+
       context "when valid cpf" do
         it "valid" do
           expect(instance.valid?).to be_truthy
@@ -39,7 +36,7 @@ describe Municipe do
 
     describe ".valid_cns?" do
       let(:instance) { create(:municipe) }
-      
+
       context "when valid cns" do
         it "valid" do
           expect(instance.valid?).to be_truthy

@@ -14,11 +14,11 @@
     <div style="float:left;">
       <%= form.label :fullname %>
       <br/>
-      <%= form.text_area :fullname %> 
+      <%= form.text_area :fullname %>
       <br/>
       <%= form.label :avatar %>
       <br/>
-      <%= form.file_field :avatar, accept: 'image/png,image/jpeg' %> 
+      <%= form.file_field :avatar, accept: 'image/png,image/jpeg' %>
       <br/>
       <%= form.label :cpf %>
       <br/>
@@ -50,34 +50,34 @@
         <h1><%= I18n.t('activerecord.models.address') %></h1>
         <%= address_form.label I18n.t('activerecord.attributes.address.zipcode') %>
         <br/>
-        <%= address_form.text_area :zipcode, value: form.object.address.zipcode %>  
+        <%= address_form.text_area :zipcode, value: form.object.try(:address).try(:zipcode) %>
         <br/>
         <%= address_form.label I18n.t('activerecord.attributes.address.publicplace') %>
         <br/>
-        <%= address_form.text_area :publicplace, value: form.object.address.publicplace %>
+        <%= address_form.text_area :publicplace, value: form.object.try(:address).try(:publicplace) %>
         <br/>
         <%= address_form.label I18n.t('activerecord.attributes.address.complement') %>
         <br/>
-        <%= address_form.text_area :complement, value: form.object.address.complement %>
+        <%= address_form.text_area :complement, value: form.object.try(:address).try(:complement) %>
         <br/>
         <%= address_form.label I18n.t('activerecord.attributes.address.district') %>
         <br/>
-        <%= address_form.text_area :district, value: form.object.address.district %>
+        <%= address_form.text_area :district, value: form.object.try(:address).try(:district) %>
         <br/>
         <%= address_form.label I18n.t('activerecord.attributes.address.city') %>
         <br/>
-        <%= address_form.text_area :city, value: form.object.address.city %>
+        <%= address_form.text_area :city, value: form.object.try(:address).try(:city) %>
         <br/>
         <%= address_form.label I18n.t('activerecord.attributes.address.uf') %>
         <br/>
-        <%= address_form.text_area :uf, value: form.object.address.uf %>
+        <%= address_form.text_area :uf, value: form.object.try(:address).try(:uf) %>
         <br/>
         <%= address_form.label I18n.t('activerecord.attributes.address.ibgecode') %>
         <br/>
-        <%= form.number_field :ibgecode, value: form.object.address.ibgecode %>
+        <%= form.number_field :ibgecode, value: form.object.try(:address).try(:ibgecode) %>
         <br/>
       <% end %>
     </div>
-    <%= form.submit %>
   </div>
+  <%= form.submit %>
 <% end %>
